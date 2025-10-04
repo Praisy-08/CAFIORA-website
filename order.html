@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAFIORA | Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: white;
+      color: #3e2723;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #f2e7dc;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #6b4f4f;
+      letter-spacing: 2px;
+    }
+
+    .nav a {
+      margin-left: 20px;
+      text-decoration: none;
+    }
+
+    .nav button {
+      padding: 10px 20px;
+      background-color: white;
+      color: #6b4f4f;
+      border: none;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .nav button:hover {
+      background-color: #e6d3c8;
+    }
+
+    .nav a.active button {
+      background-color: #6b4f4f;
+      color: white;
+      cursor: default;
+    }
+
+    /* Banner */
+    .banner {
+      width: 100%;
+      background-color: #a0522d;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      padding: 20px 0;
+      font-weight: 500;
+    }
+
+    /* Menu Items */
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 20px;
+      padding: 30px 50px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .menu-box {
+      background-color: #fff3e6;
+      border-radius: 12px;
+      overflow: hidden;
+      width: 300px;
+      text-align: center;
+      border: 1px solid #ddd;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .menu-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .menu-box img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .menu-box h3 {
+      margin: 15px 0 10px;
+      font-size: 20px;
+      color: #3e2723;
+    }
+
+    .order-btn {
+      margin-bottom: 15px;
+      padding: 10px 20px;
+      background-color: #6b4f4f;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .order-btn:hover {
+      background-color: #502f2f;
+    }
+
+    /* Footer */
+    footer.simple-footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f2e7dc;
+      color: #6b4f4f;
+      font-weight: 500;
+      margin-top: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .menu-container {
+        padding: 20px;
+        justify-content: center;
+      }
+
+      .menu-box {
+        width: 90%;
+      }
+    }
+
+      /* Toast styles */
+#toast {
+  visibility: hidden;          
+  min-width: 150px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 10px 15px;
+  position: fixed;
+  left: 50%;                    
+  bottom: 30px;                
+  transform: translateX(-50%) translateY(0); 
+  font-size: 14px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.3s;
+}
+
+#toast.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px); /* Slight pop upwards */
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">CAFIORA</div>
+    <nav class="nav">
+      <a href="index.html"><button>Home</button></a>
+      <a href="order.html" class="active"><button>Menu</button></a>
+      <a href="aboutcoffee.html"><button>About Coffee</button></a>
+      <a href="contactus.html"><button>Contact Us</button></a>
+      <a href="aboutus.html"><button>About Us</button></a>
+      <a href="cart.html">
+  <button style="position: relative;">
+    <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="Cart" style="width:22px; height:22px; vertical-align:middle;">
+    <span id="cart-count" style="
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+    ">0</span>
+  </button>
+</a>
+
+    </nav>
+  </header>
+
+  <!--toast message-->
+
+  <!-- Banner -->
+  <div class="banner">☕ Our Coffee Menu ☕</div>
+
+  <!-- Menu Items -->
+  <div class="menu-container">
+
+    <div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaLlKWsTfoTG1URS37sytGKhyH9JH6Itqvhg&s" alt="Cappuccino">
+      <h3>Cappuccino - $4.50</h3>
+      <button class="order-btn" data-name="Cappuccino" data-price="4.50" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaLlKWsTfoTG1URS37sytGKhyH9JH6Itqvhg&s">Add To Cart</button>
+    </div>
+
+    <div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKhYWWsvwzrdwdwnDUU0_l7Z386asjgvAL5w&s" alt="Black Coffee">
+      <h3>Black Coffee - $3.00</h3>
+      <button class="order-btn" data-name="Black Coffee" data-price="3.00" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKhYWWsvwzrdwdwnDUU0_l7Z386asjgvAL5w&s">Add To Cart</button>
+    </div>
+
+    <div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPUjLvjcgRw4g63F4_hY6psFI2deJhKXOuVA&s" alt="Mocha">
+      <h3>Mocha - $4.75</h3>
+      <button class="order-btn" data-name="Mocha" data-price="4.75" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPUjLvjcgRw4g63F4_hY6psFI2deJhKXOuVA&s">Add To Cart</button>
+    </div>
+
+<!--extra-->
+
+<div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBbs938IEmoKv-hZwiCIXG0Igq9ctQiCy_whZhbb2VOhAuJTl5nfdYAhyvrn0mPZe41NE&usqp=CAU" alt="Americano">
+      <h3>Americano - $9.50</h3>
+      <button class="order-btn" data-name="Americano" data-price="9.50" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBbs938IEmoKv-hZwiCIXG0Igq9ctQiCy_whZhbb2VOhAuJTl5nfdYAhyvrn0mPZe41NE&usqp=CAU">Add To Cart</button>
+    </div>
+
+    <div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJoOIUxAQRhwmKZLwC-MCizA2GVh5qdaxG8Q&s" alt="Cold Coffee">
+      <h3>Cold Coffee - $4.00</h3>
+      <button class="order-btn" data-name="Cold Coffee" data-price="4.00" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJoOIUxAQRhwmKZLwC-MCizA2GVh5qdaxG8Q&s">Add To Cart</button>
+    </div>
+
+    <div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiOk4ZnEgNnebvwfzZfZvtZnZFJEVqdXsJys-6weQRme_IKnsYt7q6fx24H7oahWb-KU0&usqp=CAU" alt="Affogato">
+      <h3>Affogato - $11.75</h3>
+      <button class="order-btn" data-name="Affogato" data-price="11.75" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiOk4ZnEgNnebvwfzZfZvtZnZFJEVqdXsJys-6weQRme_IKnsYt7q6fx24H7oahWb-KU0&usqp=CAU">Add To Cart</button>
+    </div>
+
+<!--extra1-->
+
+<div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxp8InVeI6CNVl7gZCFxxjQetZUAZiBnbCO8o3nCyswWzU3SrbxpqbwXp5IMYFXILW-y0&usqp=CAU" alt="Chocolate Cold Coffee">
+      <h3>Choco Cold Coffee - $8.50</h3>
+      <button class="order-btn" data-name="Chocolate Cold Coffee" data-price="8.50" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxp8InVeI6CNVl7gZCFxxjQetZUAZiBnbCO8o3nCyswWzU3SrbxpqbwXp5IMYFXILW-y0&usqp=CAU">Add To Cart</button>
+    </div>
+
+    <div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS3RZlw8XoMtLD3nWOGfiDkWQNDJlRJuZnKPcqg157LVOf4LtXR05rTaCaYF3QpjpFHmc&usqp=CAU" alt="Masala Chai">
+      <h3>Masala Chai - $6.00</h3>
+      <button class="order-btn" data-name="Masala Chai" data-price="6.00" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS3RZlw8XoMtLD3nWOGfiDkWQNDJlRJuZnKPcqg157LVOf4LtXR05rTaCaYF3QpjpFHmc&usqp=CAU">Add To Cart</button>
+    </div>
+
+    <div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPgSJDaEyFmBdS-JQOMiu654UDH7zX0bmByxqGO5oXVQgwXf1WiDPCcrdOItrKywbQAUg&usqp=CAU
+" alt="Hot Chocolate">
+      <h3>Hot Chocolate- $2.95</h3>
+      <button class="order-btn" data-name="Hot Chocolate" data-price="2.95" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPgSJDaEyFmBdS-JQOMiu654UDH7zX0bmByxqGO5oXVQgwXf1WiDPCcrdOItrKywbQAUg&usqp=CAU
+">Add To Cart</button>
+    </div>
+
+<!--extra2-->
+
+<div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe6eHWPSwM42I935HUC4qGpzZlV4RsYv1_lqNLa_n_gm0_Dz3dgFpovyqThugN1os-mVw&usqp=CAU" alt="Macchiato">
+      <h3>Macchiato - $12.20</h3>
+      <button class="order-btn" data-name="Macchiato" data-price="12.20" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQe6eHWPSwM42I935HUC4qGpzZlV4RsYv1_lqNLa_n_gm0_Dz3dgFpovyqThugN1os-mVw&usqp=CAU">Add To Cart</button>
+    </div>
+
+    <div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBlYIV2ZntRO0uFctkcYR7SJV0whVG1S2gAg&s" alt="Chocolate Milk">
+      <h3>Chocolate Milk - $5.00</h3>
+      <button class="order-btn" data-name="Chocolate Milk" data-price="5.00" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBlYIV2ZntRO0uFctkcYR7SJV0whVG1S2gAg&s">Add To Cart</button>
+    </div>
+
+    <div class="menu-box">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtx2CVgyGunymx4OLM0yh6DoWUEX6vw_iBRQ&s" alt="Frappe">
+      <h3>Frappe - $14.75</h3>
+      <button class="order-btn" data-name="Frappe" data-price="14.75" data-img="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtx2CVgyGunymx4OLM0yh6DoWUEX6vw_iBRQ&s">Add To Cart</button>
+    </div>
+
+    <!-- Add more items as needed -->
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="simple-footer">
+    <p>&copy; 2025 OnlineCoffeeStore. All rights reserved.</p>
+  </footer>
+
+<script>
+  const buttons = document.querySelectorAll('.order-btn');
+  const cartCount = document.getElementById('cart-count');
+
+  // Function to update cart counter
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalItems;
+  }
+
+  // Function to show toast notification
+  function showToast() {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 1500); // visible for 1.5 seconds
+  }
+
+  // Initial count on page load
+  updateCartCount();
+
+  // Add click events to all buttons
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.name;
+      const price = parseFloat(btn.dataset.price);
+      const img = btn.dataset.img;
+
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(item => item.name === name);
+      if(existing) { 
+        existing.quantity += 1; 
+      } else { 
+        cart.push({ name, price, img, quantity: 1 }); 
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      // Update cart counter
+      updateCartCount();
+
+      // Show toast notification
+      showToast();
+    });
+  });
+</script>
+
+<div id="toast">Added ✅</div>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CAFIORA | Checkout</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif;}
+    body {background:#f2e7dc; color:#3e2723; min-height:100vh; display:flex; flex-direction:column;}
+    header, footer {background:#f2e7dc; padding:20px 50px;}
+    .header {display:flex; justify-content:space-between; align-items:center;}
+    .logo {font-size:28px; font-weight:bold; color:#6b4f4f; letter-spacing:2px;}
+    .nav a {text-decoration:none; margin-left:20px;}
+    .nav button {padding:10px 20px; background:#fff; color:#6b4f4f; border:none; border-radius:20px; cursor:pointer;}
+    .nav button:hover {background:#e6d3c8;}
+    .cart-container {max-width:800px; margin:40px auto; background:#fff3e6; border-radius:12px; padding:20px; box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+    .cart-item {display:flex; align-items:center; margin-bottom:15px; border-bottom:1px solid #ddd; padding-bottom:10px;}
+    .cart-item img {width:80px; height:80px; object-fit:cover; border-radius:8px; margin-right:20px;}
+    .cart-item-details {flex-grow:1;}
+    .cart-item-details h4 {margin-bottom:5px; font-size:18px;}
+    .cart-item-details p {font-size:14px;}
+    .total {text-align:right; font-weight:bold; margin-top:20px; font-size:18px;}
+    .payment-section {margin-top:30px; text-align:center;}
+    .payment-btn, .option-btn {margin:10px; padding:12px 25px; border:none; border-radius:20px; background:#6b4f4f; color:white; font-size:15px; cursor:pointer;}
+    .payment-btn:hover, .option-btn:hover {background:#502f2f;}
+    .options-container {display:none; margin-top:15px;}
+    .options-container h4 {margin-bottom:10px;}
+    .order-message {margin-top:30px; padding:15px; background:#6b4f4f; color:white; border-radius:12px; font-size:18px; display:none; text-align:center; animation:fadeIn 0.5s ease-in-out;}
+    @keyframes fadeIn {from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);}}
+    .details-form {margin-top:20px; display:flex; flex-direction:column; gap:10px; text-align:left;}
+    .details-form label {font-weight:bold;}
+    .details-form input, .details-form textarea {padding:10px; border-radius:8px; border:1px solid #ccc; width:100%;}
+    footer.simple-footer {text-align:center; padding:20px; color:#6b4f4f; margin-top:auto;}
+    @media (max-width:768px){.cart-item{flex-direction:column; align-items:flex-start;} .cart-item img{margin-bottom:10px;} .total{text-align:left;}}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">CAFIORA</div>
+    <nav class="nav">
+      <a href="index.html"><button>Home</button></a>
+      <a href="order.html"><button>Menu</button></a>
+      <a href="aboutcoffee.html"><button>About Coffee</button></a>
+      <a href="contactus.html"><button>Contact Us</button></a>
+      <a href="aboutus.html"><button>About Us</button></a>
+      <a href="cart.html"><button><img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" style="width:22px;height:22px;vertical-align:middle;"></button></a>
+    </nav>
+  </header>
+
+  <!-- Cart Items -->
+  <div class="cart-container" id="cart-container">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <div class="total" id="cart-total">Total: $0.00</div>
+
+    <!-- User Details -->
+    <div class="details-form">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+      <label for="address">Address</label>
+      <textarea id="address" rows="3" placeholder="Enter your delivery address" required></textarea>
+    </div>
+
+    <div class="payment-section">
+      <h3>Choose Payment Method</h3>
+      <button class="payment-btn" id="cod-btn">Cash on Delivery</button>
+      <button class="payment-btn" id="card-btn">Card Payment</button>
+      <button class="payment-btn" id="upi-btn">UPI Payment</button>
+
+      <!-- Card Options -->
+      <div id="card-options" class="options-container">
+        <h4>Select Bank</h4>
+        <button class="option-btn">HDFC</button>
+        <button class="option-btn">SBI</button>
+        <button class="option-btn">ICICI</button>
+      </div>
+
+      <!-- UPI Options -->
+      <div id="upi-options" class="options-container">
+        <h4>Select UPI App</h4>
+        <button class="option-btn">PhonePe</button>
+        <button class="option-btn">Google Pay</button>
+        <button class="option-btn">Paytm</button>
+      </div>
+    </div>
+
+    <!-- Success message -->
+    <div class="order-message" id="orderMessage"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="simple-footer">
+    <p>&copy; 2025 OnlineCoffeeStore. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const orderMessage = document.getElementById('orderMessage');
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const nameInput = document.getElementById('name');
+    const phoneInput = document.getElementById('phone');
+    const addressInput = document.getElementById('address');
+
+    function renderCart() {
+      cartItemsContainer.innerHTML = '';
+      let total = 0;
+      if(cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+        cartTotal.textContent = 'Total: $0.00';
+        return;
+      }
+      cart.forEach(item => {
+        total += item.price * item.quantity;
+        const div = document.createElement('div');
+        div.classList.add('cart-item');
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.name}">
+          <div class="cart-item-details">
+            <h4>${item.name}</h4>
+            <p>Price: $${item.price.toFixed(2)} x ${item.quantity}</p>
+          </div>`;
+        cartItemsContainer.appendChild(div);
+      });
+      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+    }
+    renderCart();
+
+    // Place order
+    function placeOrder(method) {
+      // Validate user details
+      if(!nameInput.value || !phoneInput.value || !addressInput.value){
+        alert("Please fill in all details before placing the order.");
+        return;
+      }
+
+      orderMessage.textContent = `✅ Order placed successfully!\n
+      Name: ${nameInput.value}\n
+      Phone: ${phoneInput.value}\n
+      Address: ${addressInput.value}\n
+      Payment: ${method}\nRedirecting to home...`;
+      orderMessage.style.display = "block";
+
+      localStorage.removeItem('cart');
+      cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+      cartTotal.textContent = 'Total: $0.00';
+
+      setTimeout(() => { window.location.href = "index.html"; }, 5000);
+    }
+
+    // Payment buttons
+    document.getElementById('cod-btn').addEventListener('click', () => placeOrder("Cash on Delivery"));
+    document.getElementById('card-btn').addEventListener('click', () => {
+      document.getElementById('card-options').style.display = "block";
+      document.getElementById('upi-options').style.display = "none";
+    });
+    document.getElementById('upi-btn').addEventListener('click', () => {
+      document.getElementById('upi-options').style.display = "block";
+      document.getElementById('card-options').style.display = "none";
+    });
+
+    // Card + UPI option buttons
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', () => placeOrder(btn.textContent));
+    });
+  </script>
+</body>
+</html>

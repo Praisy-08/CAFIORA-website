@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAFIORA | Contact Us</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: #3e2723;
+      line-height: 1.6;
+    }
+
+    /* Header & Navigation */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #f2e7dc;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #6b4f4f;
+      letter-spacing: 2px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .nav button {
+      padding: 10px 20px;
+      background-color: white;
+      color: #6b4f4f;
+      border: none;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .nav button:hover {
+      background-color: #e6d3c8;
+    }
+
+    .nav a.active button {
+      background-color: #6b4f4f;
+      color: white;
+      cursor: default;
+    }
+
+    .search-icon {
+      font-size: 20px;
+      margin-left: 15px;
+      vertical-align: middle;
+    }
+
+    /* Banner */
+    .navbar {
+      width: 100%;
+      background-color: #a0522d;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      padding: 20px 0;
+      font-weight: 500;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #fdf7f0;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .contact-section h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #6b4f4f;
+    }
+
+    .contact-section form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-section label {
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .contact-section button {
+      padding: 12px;
+      background-color: #6b4f4f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact-section button:hover {
+      background-color: #a0522d;
+    }
+
+    /* Footer */
+    footer.simple-footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f2e7dc;
+      color: #6b4f4f;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .contact-section {
+        margin: 20px 10px;
+        padding: 20px;
+      }
+
+      .contact-section input,
+      .contact-section textarea,
+      .contact-section button {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">CAFIORA</div>
+    <nav class="nav">
+      <a href="index.html"><button>Home</button></a>
+      <a href="order.html"><button>Menu</button></a>
+      <a href="aboutcoffee.html"><button>About Coffee</button></a>
+      <a href="contactus.html" class="active"><button>Contact Us</button></a>
+      <a href="aboutus.html"><button>About Us</button></a>
+      <a href="cart.html">
+    <button>
+      <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="Cart" style="width:22px; height:22px; vertical-align:middle;">
+    </button>
+  </a>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <div class="navbar">📞 Contact Us</div>
+
+  <!-- Contact Form -->
+  <section class="contact-section">
+    <h2>Get in Touch</h2>
+    <form action="#" method="post">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="John Doe" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" placeholder="john@example.com" required>
+
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="simple-footer">
+    <p>&copy; 2025 OnlineCoffeeStore. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

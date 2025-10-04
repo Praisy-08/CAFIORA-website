@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CAFIORA | Cart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+  <style>
+    * { 
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box; 
+      font-family: 'Poppins', sans-serif; 
+    }
+    body { 
+      background-color: white; 
+      color: #333; 
+    }
+
+    /* Header & Navigation */
+    .header { 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #f2e7dc;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo { 
+      font-size: 28px;
+      font-weight: bold;
+      color: #6b4f4f;
+      letter-spacing: 2px;
+    }
+    .nav a { 
+      text-decoration: none; 
+      margin-left: 20px; 
+    }
+    .nav button { 
+      padding: 10px 20px; 
+      background-color: white; 
+      color: #6b4f4f; 
+      border: none; 
+      border-radius: 20px; 
+      font-weight: 500; 
+      cursor: pointer; 
+      transition: background-color 0.3s; 
+    }
+    .nav button:hover { 
+      background-color: #e6d3c8; 
+    }
+    .nav a.active button {
+      background-color: #6b4f4f;
+      color: white;
+      cursor: default;
+    }
+
+    /* Cart Section */
+    .cart-container { 
+      max-width: 1000px; 
+      margin: 40px auto; 
+      padding: 20px; 
+      background-color: rgba(242, 231, 220, 0.95); 
+      border-radius: 12px; 
+    }
+    h2 { 
+      text-align: center; 
+      margin-bottom: 30px; 
+      color: #6b4f4f; 
+    }
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+    }
+    th, td { 
+      padding: 15px; 
+      text-align: center; 
+      border-bottom: 1px solid #ccc; 
+    }
+    th { 
+      background-color: #6b4f4f; 
+      color: white; 
+      font-weight: 600; 
+    }
+    td img { 
+      width: 80px; 
+      border-radius: 5px; 
+    }
+    .quantity { 
+      width: 50px; 
+      padding: 5px; 
+      text-align: center; 
+      border-radius: 5px; 
+      border: 1px solid #999; 
+    }
+    .total-section { 
+      margin-top: 20px; 
+      text-align: right; 
+      font-size: 20px; 
+      font-weight: bold; 
+      color: #6b4f4f; 
+    }
+    .checkout-btn { 
+      margin-top: 20px; 
+      float: right; 
+      padding: 10px 20px; 
+      background-color: #6b4f4f; 
+      color: white; 
+      border: none; 
+      border-radius: 20px; 
+      font-weight: 600; 
+      cursor: pointer; 
+      transition: background 0.3s; 
+    }
+    .checkout-btn:hover { 
+      background-color: #502f2f; 
+    }
+    tbody tr:hover { 
+      background-color: rgba(107,79,79,0.1); 
+    }
+    .empty-msg { 
+      text-align: center; 
+      font-size: 18px; 
+      color: #6b4f4f; 
+      margin-top: 20px; 
+    }
+
+    footer.simple-footer { 
+      text-align: center; 
+      padding: 20px; 
+      background-color: #f2e7dc; 
+      color: #6b4f4f;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .header { flex-direction: column; align-items: flex-start; }
+      .nav { display: flex; flex-wrap: wrap; gap: 10px; }
+      table, th, td { font-size: 14px; }
+      td img { width: 60px; }
+      .checkout-btn { float: none; display: block; width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="logo">CAFIORA</div>
+    <nav class="nav">
+      <a href="index.html"><button>Home</button></a>
+      <a href="order.html"><button>Menu</button></a>
+      <a href="aboutcoffee.html"><button>About Coffee</button></a>
+      <a href="contactus.html"><button>Contact Us</button></a>
+      <a href="aboutus.html"><button>About Us</button></a>
+      <a href="cart.html" class="active">
+    <button>
+      <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="Cart" style="width:22px; height:22px; vertical-align:middle;">
+    </button>
+  </a>
+    </nav>
+  </header>
+
+  <div class="cart-container">
+    <h2>Your Cart</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty-msg" style="display:none;">Your cart is empty.</div>
+    <div class="total-section">Total: $0.00</div>
+    <a href="checkout.html">
+  <button class="checkout-btn" style="padding:10px 20px; background-color:#6b4f4f; color:white; border:none; border-radius:20px; cursor:pointer;">
+    Proceed to Checkout
+  </button>
+</a>
+  </div>
+
+  <footer class="simple-footer">
+    <p>&copy; 2025 OnlineCoffeeStore. All rights reserved.</p>
+  </footer>
+
+  <script>
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const tbody = document.querySelector('tbody');
+    const totalSection = document.querySelector('.total-section');
+    const emptyMsg = document.querySelector('.empty-msg');
+
+    function renderCart() {
+      cart = cart.filter(item => item.quantity > 0);
+      localStorage.setItem('cart', JSON.stringify(cart));
+
+      tbody.innerHTML = '';
+      let total = 0;
+
+      if (cart.length === 0) {
+        emptyMsg.style.display = 'block';
+        totalSection.style.display = 'none';
+        document.querySelector('.checkout-btn').style.display = 'none';
+        return;
+      } else {
+        emptyMsg.style.display = 'none';
+        totalSection.style.display = 'block';
+        document.querySelector('.checkout-btn').style.display = 'inline-block';
+      }
+
+      cart.forEach((item, index) => {
+        const subtotal = (item.price * item.quantity).toFixed(2);
+        total += parseFloat(subtotal);
+
+        tbody.innerHTML += `
+          <tr>
+            <td><img src="${item.img}" alt="${item.name}"></td>
+            <td>${item.name}</td>
+            <td>$${item.price.toFixed(2)}</td>
+            <td><input type="number" class="quantity" data-index="${index}" value="${item.quantity}" min="0"></td>
+            <td>$${subtotal}</td>
+          </tr>
+        `;
+      });
+
+      totalSection.textContent = `Total: $${total.toFixed(2)}`;
+
+      document.querySelectorAll('.quantity').forEach(input => {
+        input.addEventListener('change', e => {
+          const i = e.target.dataset.index;
+          cart[i].quantity = parseInt(e.target.value);
+          renderCart();
+          localStorage.setItem('cart', JSON.stringify(cart));
+        });
+      });
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

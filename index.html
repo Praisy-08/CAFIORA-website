@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CAFIORA | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f2e7dc;
+      color: #3e2723;
+    }
+
+    /* Header & Navigation */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #f2e7dc;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #6b4f4f;
+      letter-spacing: 2px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .nav button {
+      padding: 10px 20px;
+      background-color: white;
+      color: #6b4f4f;
+      border: none;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .nav button:hover {
+      background-color: #e6d3c8;
+    }
+
+    .nav a.active button {
+      background-color: #6b4f4f;
+      color: white;
+      cursor: default;
+    }
+
+    .search-icon {
+      font-size: 20px;
+      margin-left: 15px;
+      vertical-align: middle;
+    }
+
+    /* Hero Section */
+    .order {
+      background: url('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+      height: 500px;
+      display: flex;
+      align-items: center;
+      padding-left: 80px;
+      color: white;
+      position: relative;
+    }
+
+    .order-text h1 {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .order-text p {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .order-text button {
+      padding: 10px 20px;
+      background-color: white;
+      color: #6b4f4f;
+      border: none;
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    /* Features Section */
+    .features {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 40px 80px;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 10px;
+    }
+
+    .feature img {
+      width: 50px;
+      margin-bottom: 10px;
+    }
+
+    /* Footer */
+    footer.simple-footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f2e7dc;
+      color: #6b4f4f;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .order {
+        padding-left: 20px;
+        text-align: center;
+        height: 400px;
+      }
+
+      .features {
+        margin: 20px;
+      }
+
+      .feature img {
+        width: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">CAFIORA</div>
+    <nav class="nav">
+      <a href="index.html" class="active"><button>Home</button></a>
+      <a href="order.html"><button>Menu</button></a>
+      <a href="aboutcoffee.html"><button>About Coffee</button></a>
+      <a href="contactus.html"><button>Contact Us</button></a>
+      <a href="aboutus.html"><button>About Us</button></a>
+      <a href="cart.html">
+    <button>
+      <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="Cart" style="width:22px; height:22px; vertical-align:middle;">
+    </button>
+  </a>
+    </nav>
+  </header>
+
+  <section class="order">
+    <div class="order-text">
+      <p>Welcome to CAFIORA!</p>
+      <h1>We serve the richest coffee<br>in the city!</h1>
+      <a href="order.html"><button>Order Now!</button></a>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="feature">
+      <img src="https://img.icons8.com/ios/50/coffee.png" alt="Hot Coffee"/>
+      <p>Hot Coffee</p>
+    </div>
+    <div class="feature">
+      <img src="https://img.icons8.com/?size=80&id=aaZmDjgoZgXh&format=png" alt="Cold Coffee"/>
+      <p>Cold Coffee</p>
+    </div>
+    <div class="feature">
+      <img src="https://img.icons8.com/?size=80&id=HfeqOA6sdWjN&format=png" alt="Cup Coffee"/>
+      <p>Cup Coffee</p>
+    </div>
+    <div class="feature">
+      <img src="https://img.icons8.com/ios/50/croissant.png" alt="Bakery"/>
+      <p>Bakery</p>
+    </div>
+  </section>
+
+  <footer class="simple-footer">
+    <p>&copy; 2025 OnlineCoffeeStore. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

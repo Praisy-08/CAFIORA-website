@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CAFIORA | About Coffee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: #3e2723;
+    }
+
+    /* Header & Navigation */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background-color: #f2e7dc;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #6b4f4f;
+      letter-spacing: 2px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .nav button {
+      padding: 10px 20px;
+      background-color: white;
+      color: #6b4f4f;
+      border: none;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .nav button:hover {
+      background-color: #e6d3c8;
+    }
+
+    .nav a.active button {
+      background-color: #6b4f4f;
+      color: white;
+      cursor: default;
+    }
+
+    .search-icon {
+      font-size: 20px;
+      margin-left: 15px;
+      vertical-align: middle;
+    }
+
+    /* Page Banner */
+    .navbar1 {
+      width: 100%;
+      background-color: #a0522d;
+      color: white;
+      font-size: 24px;
+      text-align: center;
+      padding: 20px 0;
+      font-weight: 500;
+    }
+
+    /* About Coffee Section */
+    .about-section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #fdf7f0;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      line-height: 1.6;
+    }
+
+    .about-section p {
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+
+    .about-section strong {
+      color: #6b4f4f;
+    }
+
+    /* Footer */
+    footer.simple-footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f2e7dc;
+      color: #6b4f4f;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .about-section {
+        padding: 20px;
+        margin: 20px 10px;
+      }
+
+      .about-section p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">CAFIORA</div>
+    <nav class="nav">
+      <a href="index.html"><button>Home</button></a>
+      <a href="order.html"><button>Menu</button></a>
+      <a href="aboutcoffee.html" class="active"><button>About Coffee</button></a>
+      <a href="contactus.html"><button>Contact Us</button></a>
+      <a href="aboutus.html"><button>About Us</button></a>
+      <a href="cart.html">
+    <button>
+      <img src="https://img.icons8.com/ios-filled/50/000000/shopping-cart.png" alt="Cart" style="width:22px; height:22px; vertical-align:middle;">
+    </button>
+  </a>
+    </nav>
+  </header>
+
+  <!-- Banner -->
+  <div class="navbar1">☕ About Our Coffee ☕</div>
+
+  <!-- About Coffee Content -->
+  <section class="about-section">
+    <p>At our coffee shop, coffee isn’t just a drink — it’s our passion, our craft, and the heart of everything we do. Every cup we serve is made with purpose, using beans that are carefully selected, freshly roasted, and brewed to bring out the best flavor possible.</p>
+
+    <p><strong>Our Coffee Beans:</strong> We believe great coffee starts with great beans. That’s why we use only high-quality Arabica beans, grown in fertile soils at high elevations, known for their smooth, balanced flavor with hints of chocolate, fruit, and nuts.</p>
+
+    <p>We work directly with trusted farms and ethical suppliers who care about quality and sustainability. From harvest to roast, every step is done with attention and care.</p>
+
+    <p><strong>Roasted with Care:</strong> Our beans are roasted in small batches for bold, consistent flavor. Whether you love a rich espresso, a creamy latte, or a smooth cold brew, we ensure each roast brings out its best — never burnt, never bitter.</p>
+
+    <p><strong>Why Our Coffee is Different:</strong> We’re not just serving coffee — we’re creating moments. Every sip is meant to feel warm, comforting, and unforgettable.</p>
+
+    <p>When you choose our coffee, you're tasting our dedication, our story, and our love for the perfect brew.</p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="simple-footer">
+    <p>&copy; 2025 OnlineCoffeeStore. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
